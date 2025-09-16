@@ -1,18 +1,11 @@
-
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-app.use(express.json());
-app.use(cors({
-  origin: ["https://code-review-rose.vercel.app"],
-  methods: ["GET","POST"]
-}));
-
-app.get("/", (req,res) => res.send("Hello World"));
-app.post("/ai/get-review", (req,res) => {
-  const { code, language } = req.body;
-  res.send(`Received ${language} code:\n\n${code}\n\n⚡ This is your review!`);
-});
-
-module.exports = app; 
+const express=require('express');
+const aiRoutes=require('./routes/ai.routes');
+const app=express()
+const cors=require('cors');
+app.use(cors())
+app.use(express.json())
+app.get('/',(req,res)=>{
+    res.send("Hello World")  
+})
+app.use('/ai',aiRoutes)
+module.exports=app;

@@ -23,8 +23,8 @@ function App() {
 
   async function reviewCode() {
     try {
-      const response = await axios.post('https://codereview-qzot.onrender.com/ai/get-review', { code, language })
-      setReview(String(response.data)) 
+      const response = await axios.post('http://localhost:3000/ai/get-review', { code, language })
+      setReview(String(response.data)) // Ensure it's a string
     } catch (err) {
       console.error(err)
       setReview("Error fetching review. Please try again.")
